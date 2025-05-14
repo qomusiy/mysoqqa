@@ -1,187 +1,198 @@
-# MySoqqa
+MySoqqa bilan Pulingizni Boshqaring
+MySoqqa — bu daromad, xarajat va byudjetingizni bir joyda oson kuzatish imkonini beruvchi veb-ilova. O‘zbek so‘mi (UZS), AQSh dollari (USD), Rossiya rubli (RUB) kabi valyutalarni qo‘llab-quvvatlaydi va moliyaviy holatingizni statistika va kalendar orqali ko‘rishga yordam beradi.
+MySoqqa nima?
+MySoqqa yordamida siz quyidagilarni qilishingiz mumkin:
 
-MySoqqa - bu Django asosida ishlab chiqilgan byudjet boshqaruvi veb-ilovasi bo‘lib, foydalanuvchilarga daromad va xarajatlarni boshqarish, moliyaviy statistikani ko‘rish, kalendar orqali tranzaksiyalarni kuzatish va shaxsiy sozlamalarni o‘zgartirish imkonini beradi. Ilova foydalanuvchi autentifikatsiyasi, xavfsiz parol tiklash va boshqa funksiyalarni qo‘llab-quvvatlaydi.
+Daromad va xarajatlaringizni kuzatish: “Oziq-ovqat”, “Maosh” yoki boshqa maxsus kategoriyalar bilan harajat va kirimlarni yozib boring.
+Hisoblaringizni boshqarish: Naqd pul, karta va bank hisoblarini bir joyda ko‘ring.
+Ko‘p valyutani qo‘llab-quvvatlash: UZS, USD, RUB va boshqa valyutalarda tranzaksiyalarni kiriting.
+Moliyaviy ko‘rinish: Statistikalar va kalendar yordamida pul oqimingizni tahlil qiling.
 
-## Xususiyatlar
-MySoqqa quyidagi veb-sahifalar va funksiyalarni o‘z ichiga oladi:
+Saytga kirish
 
-- **Bosh sahifa (`/`)**: Ilovaga xush kelibsiz sahifasi.
-- **Ro‘yxatdan o‘tish (`/signup/`)**:
-  - Foydalanuvchilar elektron pochta orqali ro‘yxatdan o‘tadi.
-  - Tasdiqlash kodi yuboriladi (10 daqiqa amal qiladi).
-  - Foydalanuvchi ismi, familiyasi, afzal til va valyutani tanlaydi.
-- **Tizimga kirish (`/login/`)**: Foydalanuvchilar elektron pochta va parol bilan tizimga kiradi.
-- **Tizimdan chiqish (`/logout/`)**: Foydalanuvchi sessiyasini yakunlaydi.
-- **Boshqaruv paneli (`/dashboard/`)**:
-  - Foydalanuvchining barcha daromad va xarajatlari ro‘yxati.
-  - Yangi daromad yoki xarajat qo‘shish imkoniyati.
-- **Daromad qo‘shish/tahrirlash/o‘chirish (`/add_income/`, `/update_income/<id>/`, `/delete_income/<id>/`)**:
-  - Miqdor, valyuta, sana, kategoriya va eslatma kiritish.
-  - Mavjud daromadlarni tahrirlash yoki o‘chirish.
-- **Xarajat qo‘shish/tahrirlash/o‘chirish (`/add_expense/`, `/update_expense/<id>/`, `/delete_expense/<id>/`)**:
-  - Daromad bilan bir xil funksiyalar, lekin xarajatlar uchun.
-- **Statistika (`/statistics/`)**:
-  - Umumiy daromad, xarajat va sof balansni ko‘rsatadi.
-  - Kategoriyalar bo‘yicha tahlil (daromad va xarajatlar).
-  - Progress bar orqali foizli taqsimot.
-- **Kalendar (`/calendar/`)**:
-  - Oylik tranzaksiyalarni kunlik ko‘rinishda ko‘rsatadi.
-  - Oylik daromad, xarajat va balans xulosasi.
-- **Tarix (`/history/`)**:
-  - Barcha tranzaksiyalarni (daromad va xarajat) filtrlar bilan ko‘rish.
-  - Qidiruv, tur (daromad/xarajat), kategoriya va sana bo‘yicha filtrlar.
-  - Sahifalarga bo‘lingan ro‘yxat (har sahifada 20 ta yozuv).
-- **Sozlamalar (`/settings/`)**:
-  - Profilni yangilash (ism, familiya, afzal til, valyuta).
-  - Parolni o‘zgartirish (joriy parolni tasdiqlash talab qilinadi).
-  - Hisobni o‘chirish.
-- **Parolni tiklash (`/password_reset/`)**:
-  - Elektron pochtaga tasdiqlash kodi yuboriladi.
-  - Yangi parol o‘rnatish uchun kodni tasdiqlash.
+Sayt manzili: https://mysoqqa.onrender.com
+Brauzeringizda (masalan, Chrome, Firefox yoki Safari) yuqoridagi manzilga o‘ting.
+Saytdan foydalanish uchun avval ro‘yxatdan o‘ting yoki tizimga kiring.
 
-## Xavfsizlik
-- **Elektron pochta tasdiqlash**: Ro‘yxatdan o‘tish va parol tiklash uchun tasdiqlash kodi.
-- **Parol xavfsizligi**: Parollar shifrlanadi, `check_password` funksiyasi orqali tekshiriladi.
-- **HTTPS**: Render’da joylashtirilganda xavfsiz ulanish.
+MySoqqa xususiyatlari
+Quyida saytning asosiy funksiyalari keltirilgan:
 
-## Tizim talablari
-- Python 3.8 yoki undan yuqori.
-- Git (kodni GitHub’dan yuklash uchun).
-- Render hisobi (deploiement uchun).
-- Elektron pochta xizmati (tasdiqlash kodlari uchun, masalan, Gmail SMTP).
+Ro‘yxatdan o‘tish: Elektron pochta orqali yangi hisob ochish.
+Tizimga kirish va chiqish: Hisobingizga kirish yoki sessiyani yakunlash.
+Boshqaruv paneli: Daromad va xarajatlaringizni ko‘rish va yangi tranzaksiyalar qo‘shish.
+Daromad va xarajat qo‘shish: Pul kirimi yoki chiqimlarini maxsus kategoriyalar bilan kiritish.
+Statistika: Umumiy moliyaviy holatni va kategoriyalar bo‘yicha taqsimotni ko‘rish.
+Kalendar: Tranzaksiyalarni oylik va kunlik ko‘rinishda kuzatish.
+Tarix: Barcha tranzaksiyalarni qidiruv va filtrlar bilan ko‘rish.
+Sozlamalar: Profil ma‘lumotlari, parol yoki valyutani o‘zgartirish.
+Parolni tiklash: Unutilgan parolni tiklash uchun elektron pochta orqali kod olish.
 
-## Mahalliy sozlash
-Loyihani mahalliy kompyuterda ishga tushirish uchun quyidagi qadamlarni bajaring:
+Saytdan qanday foydalanish kerak
+Quyida MySoqqa saytining har bir funksiyasidan foydalanish bo‘yicha oddiy qadamlar keltirilgan.
+1. Ro‘yxatdan o‘tish
 
-1. **Repozitoriyani klonlash**:
-   ```bash
-   git clone https://github.com/sizning_foydalanuvchi_nomingiz/mysoqqa.git
-   cd mysoqqa
-   ```
+Manzil: https://mysoqqa.onrender.com/signup/
+Qadamlar:
+Elektron pochta manzilingizni kiriting (masalan, ism@example.com).
+“Yuborish” tugmasini bosing. Elektron pochtangizga 6 raqamli tasdiqlash kodi keladi (10 daqiqa amal qiladi).
+Kodni kiriting va “Tasdiqlash” tugmasini bosing.
+Quyidagi ma‘lumotlarni to‘ldiring:
+Ism (masalan, Ali).
+Familiya (ixtiyoriy).
+Afzal til (masalan, Inglizcha — “en”).
+Afzal valyuta (masalan, UZS, USD yoki RUB).
+Parol va parolni tasdiqlash (masalan, “parol123”).
 
-2. **Virtual muhit yaratish va faollashtirish**:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # Windows uchun: venv\Scripts\activate
-   ```
 
-3. **Bog‘liqliklarni o‘rnatish**:
-   ```bash
-   pip install -r requirements.txt
-   ```
+“Ro‘yxatdan o‘tish” tugmasini bosing.
 
-4. **Ma‘lumotlar bazasini sozlash**:
-   - Migratsiyalarni ishga tushiring:
-     ```bash
-     python manage.py migrate
-     ```
-   - Dastlabki valyuta yaratish (ro‘yxatdan o‘tish uchun talab qilinadi):
-     ```bash
-     python manage.py shell
-     ```
-     ```python
-     from user.models import Currency
-     Currency.objects.create(code="USD", name="US Dollar")
-     ```
 
-5. **Statik fayllarni yig‘ish**:
-   ```bash
-   python manage.py collectstatic
-   ```
+Natija: Hisobingiz yaratiladi va siz tizimga kirish sahifasiga o‘tasiz.
+Maslahat: Elektron pochta qutingizning “Spam” yoki “Junk” jildini tekshiring, agar kod kelmasa.
 
-6. **Serverni ishga tushirish**:
-   ```bash
-   python manage.py runserver
-   ```
-   - Brauzerda `http://localhost:8000` ga o‘ting.
+2. Tizimga kirish
 
-7. **Test qilish**:
-   - **Bosh sahifa**: `http://localhost:8000/`.
-   - **Ro‘yxatdan o‘tish**:
-     - `http://localhost:8000/signup/` ga o‘ting.
-     - Elektron pochta kiritib, tasdiqlash kodi orqali ro‘yxatdan o‘ting.
-   - **Tizimga kirish**: `http://localhost:8000/login/` orqali kirib, `dashboard` ga o‘ting.
-   - **Sozlamalar**: `http://localhost:8000/settings/` da parolni o‘zgartiring.
-   - **Statistika/Kalendar/Tarix**: Tranzaksiyalarni qo‘shib, ushbu sahifalarni sinab ko‘ring.
+Manzil: https://mysoqqa.onrender.com/login/
+Qadamlar:
+Elektron pochta manzilingizni kiriting.
+Parolingizni kiriting.
+“Kirish” tugmasini bosing.
 
-## Render’ga joylashtirish
-Loyihani Render platformasiga joylashtirish uchun quyidagi qadamlarni bajaring:
 
-1. **Render hisobini yaratish**:
-   - [Render](https://render.com) saytida ro‘yxatdan o‘ting va elektron pochtangizni tasdiqlang.
+Natija: Boshqaruv paneliga (/dashboard/) o‘tasiz.
+Xato: Agar “Noto‘g‘ri ma‘lumotlar” xabari chiqsa, pochta yoki parolni tekshiring yoki parolni tiklang.
 
-2. **Veb-xizmat yaratish**:
-   - Render Dashboard’da “New” > “Web Service” ni bosing.
-   - GitHub hisobingizni ulang va `mysoqqa` repozitoriyasini tanlang.
-   - Sozlamalar:
-     - **Name**: `mysoqqa-api`
-     - **Environment**: Python
-     - **Region**: Sizga eng yaqin (masalan, US East)
-     - **Branch**: `main`
-     - **Build Command**: `pip install -r requirements.txt && python manage.py migrate && python manage.py collectstatic --noinput`
-     - **Start Command**: `gunicorn mysoqqa.wsgi:application`
-     - **Instance Type**: Free (sinov uchun).
-   - **Advanced Settings**:
-     - Disk qo‘shing:
-       - Name: `sqlite3-disk`
-       - Mount Path: `/opt/render/project/src`
-       - Size: 1 GB (SQLite3 uchun).
+3. Boshqaruv paneli
 
-3. **Atrof-muhit o‘zgaruvchilarini sozlash**:
-   - Web Service sozlamalarida Environment > Environment Variables ga o‘ting va quyidagilarni qo‘shing:
-     - `DJANGO_SECRET_KEY`: Quyidagi buyruq bilan yarating:
-       ```bash
-       python3 -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
-       ```
-     - `DEBUG`: `False`
-     - `ALLOWED_HOSTS`: `mysoqqa-api.onrender.com,localhost,127.0.0.1`
-     - `EMAIL_HOST_USER`: Sizning elektron pochta manzilingiz (masalan, Gmail).
-     - `EMAIL_HOST_PASSWORD`: Elektron pochta ilovasi paroli.
-     - `SECURE_SSL_REDIRECT`: `True`
+Manzil: https://mysoqqa.onrender.com/dashboard/
+Nimalar qilish mumkin:
+Barcha daromad va xarajatlaringiz ro‘yxatini ko‘rish (sana bo‘yicha tartiblangan).
+“Yangi daromad qo‘shish” yoki “Yangi xarajat qo‘shish” tugmalarini bosib tranzaksiya kiritish.
+Mavjud tranzaksiyalarni tahrirlash yoki o‘chirish uchun ularni bosing.
 
-4. **Joylashtirish**:
-   - “Create Web Service” ni bosing.
-   - Build loglarini kuzating.
-   - URL ni eslab qoling (masalan, `https://mysoqqa-api.onrender.com`).
 
-5. **Ma‘lumotlar bazasini tekshirish**:
-   - `db.sqlite3` GitHub orqali yuklangan bo‘lsa, diskda (`/opt/render/project/src/db.sqlite3`) mavjud.
-   - Tekshirish uchun Render shell’dan foydalaning:
-     - Dashboard > Web Service > Shell.
-     - Quyidagilarni ishga tushiring:
-       ```bash
-       python manage.py shell
-       ```
-       ```python
-       from user.models import Currency
-       Currency.objects.all()
-       ```
-     - Agar bo‘sh bo‘lsa, valyuta yarating:
-       ```python
-       Currency.objects.create(code="USD", name="US Dollar")
-       ```
+Maslahat: Ro‘yxatdagi har bir yozuvda valyuta (masalan, UZS) va kategoriya (masalan, “Maosh”) ko‘rsatiladi.
 
-6. **Foydalanuvchi yaratish**:
-   - Brauzerda `https://mysoqqa-api.onrender.com/signup/` ga o‘ting va yangi foydalanuvchi ro‘yxatdan o‘tkazing.
-   - Yoki Render shell’da admin yarating:
-     ```bash
-     python manage.py createsuperuser
-     ```
+4. Daromad qo‘shish
 
-7. **Sinov**:
-   - **Bosh sahifa**: `https://mysoqqa-api.onrender.com/`.
-   - **Sozlamalar**: `https://mysoqqa-api.onrender.com/settings/` da parolni o‘zgartiring.
-   - **Statistika**: `https://mysoqqa-api.onrender.com/statistics/` da balansni ko‘ring.
-   - **Parol tiklash**: `https://mysoqqa-api.onrender.com/password_reset/` orqali sinab ko‘ring.
+Manzil: https://mysoqqa.onrender.com/add_income/
+Qadamlar:
+“Miqdor” maydoniga pul summasini kiriting (masalan, 5000000).
+Valyutani tanlang (masalan, UZS, USD yoki RUB).
+Sana va vaqtni kiriting (masalan, “2025-05-14”) yoki bo‘sh qoldiring (hozirgi vaqt ishlatiladi).
+Kategoriyani tanlang (masalan, “Maosh” yoki “Sovg‘a”).
+Hisob turini tanlang (masalan, “Naqd pul” yoki “Bank kartasi”).
+Eslatma qo‘shing (ixtiyoriy, masalan, “May oyi maoshi”).
+“Saqlash” tugmasini bosing.
 
-## Muammolarni bartaraf etish
-- **Build muvaffaqiyatsiz bo‘lsa**: Loglarda `requirements.txt` yoki kod xatolarini tekshiring.
-- **Ma‘lumotlar bazasi xatolari**: `db.sqlite3` diskda mavjudligini va ruxsatlarini tekshiring (`chmod 664 db.sqlite3`).
-- **Statik fayllar yuklanmasa**: `collectstatic` ishlaganligini tekshiring.
-- **Elektron pochta xatolari**: `EMAIL_HOST_USER` va `EMAIL_HOST_PASSWORD` to‘g‘riligini tekshiring.
-- **403/500 xatolar**: `ALLOWED_HOSTS` va `DEBUG=False` sozlamalarini tekshiring.
 
-## Kelajakdagi qadamlar
-- PostgreSQL ga o‘tish uchun Render ma‘lumotlar bazasidan foydalaning.
-- Maxsus domen qo‘shish uchun Render Dashboard > Settings > Custom Domains ga o‘ting.
-- Frontend yaxshilash yoki mobil ilova qo‘shish uchun qo‘shimcha yordam so‘rang.
+Natija: Daromad boshqaruv panelida paydo bo‘ladi.
+Tahrirlash/O‘chirish: Boshqaruv panelida daromadni bosib, ma‘lumotlarni o‘zgartiring yoki o‘chiring.
+
+5. Xarajat qo‘shish
+
+Manzil: https://mysoqqa.onrender.com/add_expense/
+Qadamlar: Daromad qo‘shish bilan bir xil, lekin xarajatlar uchun.
+Misol: Kategoriya sifatida “Oziq-ovqat” yoki “Transport” tanlang.
+Eslatma: “Supermarket xaridi”.
+
+
+Natija: Xarajat boshqaruv panelida ko‘rinadi.
+
+6. Statistika
+
+Manzil: https://mysoqqa.onrender.com/statistics/
+Nimalarni ko‘rish mumkin:
+Umumiy daromad (masalan, 10,000,000 UZS).
+Umumiy xarajat (masalan, 7,000,000 UZS).
+Sof balans (daromad minus xarajat, masalan, 3,000,000 UZS).
+Kategoriyalar bo‘yicha taqsimot (masalan, “Oziq-ovqat” ga 2,000,000 UZS sarflangan).
+Foizli ko‘rsatkichlar (grafik yoki progress bar shaklida).
+
+
+Maslahat: Bu sahifa pulingiz qayerga ketayotganini tushunishga yordam beradi.
+
+7. Kalendar
+
+Manzil: https://mysoqqa.onrender.com/calendar/
+Nimalarni ko‘rish mumkin:
+Oylik tranzaksiyalar kunlik ko‘rinishda (masalan, 14-may uchun daromad/xarajatlar).
+Har bir kunda tranzaksiya tafsilotlari (miqdor, kategoriya, valyuta).
+Oy uchun umumiy daromad, xarajat va balans.
+
+
+Navigatsiya: “Oldingi oy” yoki “Keyingi oy” tugmalarini bosib, boshqa oylarga o‘ting.
+Maslahat: Kalendar muayyan kunlarda nima xarajat qilganingizni aniqlash uchun qulay.
+
+8. Tarix
+
+Manzil: https://mysoqqa.onrender.com/history/
+Nimalarni ko‘rish mumkin:
+Barcha tranzaksiyalar ro‘yxati (daromad va xarajat).
+Filtrlash imkoniyati:
+Qidiruv bo‘yicha (masalan, “Do‘kon” eslatmasini qidiring).
+Tur (faqat daromad yoki faqat xarajat).
+Kategoriya (masalan, “Maosh” yoki “Kommunal xizmatlar”).
+Sana oralig‘i (masalan, 2025-05-01 dan 2025-05-31 gacha).
+
+
+
+
+Navigatsiya: Agar tranzaksiyalar ko‘p bo‘lsa, sahifalar o‘rtasida o‘ting (har sahifada 20 ta yozuv).
+Maslahat: Muayyan xarajatlarni topish uchun filtrlardan foydalaning.
+
+9. Sozlamalar
+
+Manzil: https://mysoqqa.onrender.com/settings/
+Nimalar qilish mumkin:
+Profilni yangilash:
+Ism va familiyani o‘zgartiring.
+Afzal tilni tanlang (masalan, Inglizcha).
+Afzal valyutani tanlang (masalan, UZS).
+“Saqlash” tugmasini bosing.
+
+
+Parolni o‘zgartirish:
+Joriy parolni kiriting.
+Yangi parol va uni tasdiqlang (masalan, “yangi123”).
+“O‘zgartirish” tugmasini bosing.
+
+
+Hisobni o‘chirish:
+“Hisobni o‘chirish” tugmasini bosing.
+Tasdiqlang — bu hisobingizni butunlay o‘chiradi.
+
+
+
+
+Natija: Profil yoki parol o‘zgartirilganda xabar ko‘rasiz (masalan, “Parol muvaffaqiyatli o‘zgartirildi”).
+
+10. Parolni tiklash
+
+Manzil: https://mysoqqa.onrender.com/password_reset/
+Qadamlar:
+Elektron pochta manzilingizni kiriting.
+“Yuborish” tugmasini bosing. Pochtangizga 6 raqamli kod keladi.
+Kodni kiriting va “Tasdiqlash” tugmasini bosing.
+Yangi parol va uni tasdiqlang.
+“Saqlash” tugmasini bosing.
+
+
+Natija: Yangi parol bilan tizimga kirishingiz mumkin.
+Maslahat: Kod kelmasa, “Spam” yoki “Junk” jildini tekshiring.
+
+Maslahatlar
+
+Valyutalar: Tranzaksiyalarni UZS, USD, RUB yoki boshqa valyutalarda kiriting. Afzal valyutangizni sozlamalarda o‘rnating.
+Kategoriyalar: “Maosh”, “Oziq-ovqat”, “Transport” kabi kategoriyalardan foydalanib, xarajatlaringizni tartibga soling.
+Statistikadan foydalaning: Qaysi kategoriyaga ko‘proq sarf qilayotganingizni bilish uchun statistika sahifasini muntazam ko‘ring.
+Xavfsizlik: Parolingizni murakkab qiling (masalan, harflar, raqamlar va belgilar aralashmasi).
+Mobil foydalanish: Sayt mobil brauzerlarda ham ishlaydi, shuning uchun telefonda ham foydalanishingiz mumkin.
+
+Yordam kerakmi?
+
+Savollar: Agar saytdan foydalanishda muammo bo‘lsa, elektron pochta orqali yordam so‘rang: qomusiy@gmail.com.
+Xatolar: Saytda xato yuz bersa (masalan, sahifa ochilmasa), yuqoridagi manzilga yozing.
+Takliflar: Saytni yaxshilash bo‘yicha fikringiz bo‘lsa, biz bilan baham ko‘ring!
+
+MySoqqa bilan moliyangizni oson boshqaring va byudjetingizni nazoratda saqlang!
