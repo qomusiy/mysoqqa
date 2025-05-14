@@ -1,0 +1,630 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.navbar {
+  background-color: #333;
+  padding: 15px 0;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+}
+
+.navbar a:hover {
+  background-color: #555;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.alert-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+/* Ensure Tailwind buttons don't conflict */
+button:not(.btn) {
+  transition: background-color 0.2s;
+}
+
+.cycle-buttons {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.cycle-button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: white;
+  font-size: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cycle-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.cycle-income {
+  background-color: #28a745;
+}
+
+.cycle-income:hover {
+  background-color: #218838;
+}
+
+.cycle-expense {
+  background-color: #dc3545;
+}
+
+.cycle-expense:hover {
+  background-color: #c82333;
+}
+
+@media (max-width: 767px) {
+  .cycle-buttons {
+    flex-direction: row;
+    gap: 15px;
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* Statistics Page */
+.stats-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.stats-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stats-card {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+}
+
+.stats-card.income {
+  background-color: #e7f3e6; /* Light green */
+}
+
+.stats-card.expense {
+  background-color: #f9e6e6; /* Light red */
+}
+
+.stats-card.balance {
+  background-color: #f8f9fa;
+}
+
+.stats-card h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.stats-card .amount {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.progress-section {
+  margin-bottom: 24px;
+}
+
+.progress-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  display: flex;
+  height: 20px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-income {
+  background-color: #28a745; /* Green */
+}
+
+.progress-expense {
+  background-color: #dc3545; /* Red */
+}
+
+.progress-label {
+  margin-top: 8px;
+  font-size: 0.875rem;
+  color: #6c757d;
+}
+
+.category-section h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.category-table th,
+.category-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.category-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.category-table tr.income {
+  background-color: #e7f3e6; /* Light green */
+}
+
+.category-table tr.expense {
+  background-color: #f9e6e6; /* Light red */
+}
+
+@media (max-width: 767px) {
+  .stats-cards {
+    flex-direction: column;
+  }
+
+  .category-table th,
+  .category-table td {
+    font-size: 0.875rem;
+    padding: 8px;
+  }
+}
+
+/* Signup Page Specific Styles */
+.signup-container {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px;
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.signup-container h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.signup-form {
+  display: none;
+}
+
+.signup-form.active {
+  display: block;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.signup-form .form-group {
+  margin-bottom: 20px;
+}
+
+.signup-form .form-group label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 8px;
+}
+
+.signup-form .form-group input,
+.signup-form .form-group select {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.signup-form .form-group input:focus,
+.signup-form .form-group select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
+.signup-form .btn-primary {
+  width: 100%;
+  padding: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background-color: #007bff;
+  border-radius: 6px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.signup-form .btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+.signup-form .alert-error {
+  font-size: 0.9rem;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.signup-form .login-link {
+  display: block;
+  margin-top: 20px;
+  font-size: 0.95rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signup-form .login-link:hover {
+  text-decoration: underline;
+}
+
+.progress-steps {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.progress-step {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  color: #888;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.progress-step.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .signup-container {
+    margin: 30px 15px;
+    padding: 20px;
+  }
+
+  .signup-container h1 {
+    font-size: 1.5rem;
+  }
+
+  .signup-form .form-group input,
+  .signup-form .form-group select {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+
+  .signup-form .btn-primary {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  .progress-step {
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Calendar Page Specific Styles */
+.calendar-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+}
+
+.calendar-day-header {
+  text-align: center;
+  font-weight: 600;
+  padding: 10px;
+  background-color: #f8f9fa;
+}
+
+.calendar-day {
+  position: relative;
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #eee;
+  min-height: 80px;
+}
+
+.calendar-day.has-transactions {
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.calendar-day .day-number {
+  display: block;
+  font-weight: 600;
+}
+
+.transaction-popup {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  z-index: 10;
+  min-width: 200px;
+}
+
+.calendar-day:hover .transaction-popup {
+  display: block;
+}
+
+.transaction {
+  margin-bottom: 5px;
+  font-size: 0.85rem;
+}
+
+.transaction.income {
+  color: #28a745;
+}
+
+.transaction.expense {
+  color: #dc3545;
+}
+
+.transaction span {
+  display: block;
+}
+
+.calendar-summary {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.calendar-summary p {
+  margin: 5px 0;
+}
+
+@media (max-width: 767px) {
+  .calendar-container {
+    padding: 15px;
+  }
+
+  .calendar-grid {
+    gap: 3px;
+  }
+
+  .calendar-day {
+    min-height: 60px;
+    font-size: 0.85rem;
+  }
+
+  .transaction-popup {
+    min-width: 150px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Dashboard Table Styles */
+.dashboard-table-container {
+  margin-bottom: 40px;
+}
+
+.dashboard-table-container h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.transaction-table th,
+.transaction-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.transaction-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.transaction-table td {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.transaction-table tr.income-row {
+  background-color: #e7f3e6;
+  transition: background-color 0.2s;
+}
+
+.transaction-table tr.expense-row {
+  background-color: #f9e6e6;
+  transition: background-color 0.2s;
+}
+
+.transaction-table tr:hover {
+  background-color: #f0f0f0;
+}
+
+.transaction-table tr.income-row:hover {
+  background-color: #d4edda;
+}
+
+.transaction-table tr.expense-row:hover {
+  background-color: #f8d7da;
+}
+
+.transaction-table .btn-small {
+  margin-right: 8px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.transaction-table .btn-small:hover {
+  transform: translateY(-1px);
+}
+
+.transaction-table .btn-primary {
+  background-color: #007bff;
+}
+
+.transaction-table .btn-danger {
+  background-color: #dc3545;
+}
+
+@media (max-width: 767px) {
+  .transaction-table th,
+  .transaction-table td {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .transaction-table .btn-small {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+}

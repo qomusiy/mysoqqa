@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+  <h2 class="text-3xl font-semibold mb-6">Settings</h2>
+
+  <div class="bg-white p-6 rounded-lg shadow">
+    <!-- Update Profile Form -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-4">Update Profile</h3>
+      <form id="update-profile-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="update_profile">
+        <div class="form-group mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" id="name" name="name" value="{{ user.first_name }}" required class="w-full p-2 border rounded">
+        </div>
+        <div class="form-group mb-4">
+          <label for="surname" class="block text-sm font-medium text-gray-700">Surname (optional)</label>
+          <input type="text" id="surname" name="surname" value="{{ user.last_name|default_if_none:'' }}" class="w-full p-2 border rounded">
+        </div>
+        <div class="form-group mb-4">
+          <label for="preferred_language" class="block text-sm font-medium text-gray-700">Preferred Language</label>
+          <select id="preferred_language" name="preferred_language" required class="w-full p-2 border rounded">
+            <option value="en" {% if user.preferred_language == 'en' %}selected{% endif %}>English</option>
+            <option value="uz" {% if user.preferred_language == 'uz' %}selected{% endif %}>Uzbek</option>
+            <option value="ru" {% if user.preferred_language == 'ru' %}selected{% endif %}>Russian</option>
+          </select>
+        </div>
+        <div class="form-group mb-4">
+          <label for="preferred_currency" class="block text-sm font-medium text-gray-700">Preferred Currency</label>
+          <select id="preferred_currency" name="preferred_currency" class="w-full p-2 border rounded">
+            <option value="">Select Currency</option>
+            {% for currency in currencies %}
+              <option value="{{ currency.id }}" {% if user.preferred_currency.id == currency.id %}selected{% endif %}>
+                {{ currency.name }} ({{ currency.code }})
+              </option>
+            {% endfor %}
+          </select>
+        </div>
+        {% if profile_error %}
+          <p class="error">{{ profile_error }}</p>
+        {% endif %}
+        {% if profile_success %}
+          <p class="text-green-500 text-sm">{{ profile_success }}</p>
+        {% endif %}
+        <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Update Profile</button>
+      </form>
+    </div>
+
+    <!-- Change Password Form -->
+    <div class="mb-6">
+      <h3 class="text-xl font-semibold mb-4">Change Password</h3>
+      <form id="change-password-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="change_password">
+        <div class="form-group mb-4">
+          <label for="current_password" class="block text-sm font-medium text-gray-700">Current Password</label>
+          <input type="password" id="current_password" name="current_password" required class="w-full p-2 border rounded">
+        </div>
+        <div class="form-group mb-4">
+          <label for="new_password" class="block text-sm font-medium text-gray-700">New Password</label>
+          <input type="password" id="new_password" name="new_password" required class="w-full p-2 border rounded">
+        </div>
+        <div class="form-group mb-4">
+          <label for="confirm_new_password" class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+          <input type="password" id="confirm_new_password" name="confirm_new_password" required class="w-full p-2 border rounded">
+        </div>
+        {% if password_error %}
+          <p class="error">{{ password_error }}</p>
+        {% endif %}
+        {% if password_success %}
+          <p class="text-green-500 text-sm">{{ password_success }}</p>
+        {% endif %}
+        <button type="submit" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Change Password</button>
+
+        <a href="{% url 'password_reset' %}" class="btn btn-primary bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">Reset password via email</a>
+      </form>
+    </div>
+
+    <!-- Delete Account -->
+    <div>
+      <h3 class="text-xl font-semibold mb-4 ">Delete Account</h3>
+      <p class="text-sm text-gray-600 mb-4">Permanently delete your account. This action cannot be undone.</p>
+      <form id="delete-account-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="delete_account">
+        <button type="submit" class="btn btn-danger bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded" onclick="return confirm('Are you sure you want to delete your account? This cannot be undone.');">Delete Account</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}

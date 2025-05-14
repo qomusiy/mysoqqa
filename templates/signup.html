@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up for MySoqqa</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="{% static 'js/script.js' %}" defer></script>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Sign Up for MySoqqa</h1>
+        <div class="progress-steps">
+            <span class="progress-step {% if step == 'email' %}active{% endif %}">1</span>
+            <span class="progress-step {% if step == 'code' %}active{% endif %}">2</span>
+            <span class="progress-step {% if step == 'register' %}active{% endif %}">3</span>
+        </div>
+
+        {% if step == 'email' %}
+        <form id="email-form" class="signup-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="step" value="email">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Send Verification Code</button>
+        </form>
+        {% elif step == 'code' %}
+        <form id="code-form" class="signup-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="step" value="code">
+            <input type="hidden" name="email" value="{{ email }}">
+            <div class="form-group">
+                <label for="code">Verification Code</label>
+                <input type="text" id="code" name="code" required>
+            </div>
+            {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Verify Code</button>
+        </form>
+        {% elif step == 'register' %}
+        <form id="register-form" class="signup-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="step" value="register">
+            <input type="hidden" name="email" value="{{ email }}">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="surname">Surname (optional)</label>
+                <input type="text" id="surname" name="surname">
+            </div>
+            <div class="form-group">
+                <label for="preferred_language">Preferred Language</label>
+                <select id="preferred_language" name="preferred_language" required>
+                    <option value="en">English</option>
+                    <option value="uz">Uzbek</option>
+                    <option value="ru">Russian</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="preferred_currency">Preferred Currency</label>
+                <select id="preferred_currency" name="preferred_currency">
+                    <option value="">Select Currency</option>
+                    {% for currency in currencies %}
+                    <option value="{{ currency.id }}">{{ currency.name }} ({{ currency.code }})</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" required>
+            </div>
+            {% if error %}
+            <div class="alert alert-error">{{ error }}</div>
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        {% else %}
+        <!-- Fallback: Show email form if step is invalid -->
+        <form id="email-form" class="signup-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="step" value="email">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Verification Code</button>
+        </form>
+        {% endif %}
+
+        <a href="{% url 'login' %}" class="login-link">Already have an account? Log in</a>
+    </div>
+</body>
+</html>

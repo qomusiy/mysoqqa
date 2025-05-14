@@ -1,73 +1,58 @@
 {% load static %}
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <title>TrulyExpenses {% block title %} {% endblock %}</title>
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" />
-    <link href="{% static 'css/main.css'%}" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet" />
-  </head>
-  <body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">TrulyExpenses</a>
-
-      <ul
-        class="navbar-nav px-3"
-        style="display: flex; flex-direction: row; align-items: center;"
-      >
-        <li class="nav-item text-nowrap">
-          <span class="nav-link" href="">
-            ({{request.user.username}})
-          </span>
-        </li>
-
-        <li class="nav-item text-nowrap mt-3 ml-2">
-          <form action="{% url  'logout' %}" method="POST">
-            {% csrf_token %}
-            <input
-              class="text text-capitalize"
-              type="submit"
-              value="Sign out"
-            />
-          </form>
-        </li>
-      </ul>
-    </nav>
-
-    <div class="container-fluid">
-      <div class="row">
-        {% include 'partials/_sidebar.html' %}
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-          {% block content %} {% endblock %}
-        </main>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySoqqa - {% block title %}{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="bg-gray-100 font-sans">
+  <!-- Navigation Bar -->
+  <nav class="bg-white shadow p-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-green-600">MySoqqa</h1>
+      <div>
+        {% if user.is_authenticated %}
+          <span class="mr-4">Welcome, {{ user.first_name }}</span>
+          <a href="{% url 'dashboard' %}" class="text-green-600 hover:text-green-800 mr-4">Dashboard</a>
+          <a href="{% url 'statistics' %}" class="text-green-600 hover:text-green-800 mr-4">Statistics</a>
+          <a href="{% url 'calendar' %}" class="text-green-600 hover:text-green-800 mr-4">Calendar</a>
+          <a href="{% url 'history' %}" class="text-green-600 hover:text-green-800 mr-4">History</a>
+          <a href="{% url 'settings' %}" class="text-green-600 hover:text-green-800 mr-4">Settings</a>
+          <a href="https://documenter.getpostman.com/view/44281443/2sB2qUmjVe#3821c1e1-081d-4b2a-8125-7aab2f566269" class="text-green-600 hover:text-green-800 mr-4">API-POSTMAN-DOCS</a>
+          <a href="{% url 'logout' %}" class="text-green-600 hover:text-green-800">Logout</a>
+        {% else %}
+          <a href="{% url 'index' %}" class="text-green-600 hover:text-green-800 mr-4">Site</a>
+          <a href="{% url 'login' %}" class="text-green-600 hover:text-green-800 mr-4">Login</a>
+          <a href="{% url 'signup' %}" class="text-green-600 hover:text-green-800">Sign Up</a>
+        {% endif %}
       </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      window.jQuery ||
-        document.write(
-          '<script src="/docs/4.4/static/js/vendor/jquery.slim.min.js"><\/script>'
-        );
-    </script>
-    <script
-      src="/docs/4.4/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-     <script src="{% static 'js/main.js' %}"></script>
-  </body>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="max-w-7xl mx-auto p-6">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  {% if user.is_authenticated %}
+        <div class="cycle-buttons">
+            <a href="{% url 'add_income' %}" class="cycle-button cycle-income">+</a>
+            <a href="{% url 'add_expense' %}" class="cycle-button cycle-expense">−</a>
+        </div>
+    {% endif %}
+
+  <!-- Footer -->
+  <footer class="bg-white p-4 mt-6">
+    <div class="max-w-7xl mx-auto text-center text-gray-600">
+      © 2025 MySoqqa. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="{% static 'js/script.js' %}"></script>
+</body>
 </html>

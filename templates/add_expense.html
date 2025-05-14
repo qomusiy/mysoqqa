@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{% if expense %}Update Expense{% else %}Add Expense{% endif %}{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="text-2xl font-semibold mb-6">{% if expense %}Update Expense{% else %}Add Expense{% endif %}</h1>
+
+    <form id="add-expense-form" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount" step="0.01" value="{% if expense %}{{ expense.amount }}{% endif %}" required>
+      </div>
+      <div class="form-group">
+        <label for="currency">Currency</label>
+        <select id="currency" name="currency" required>
+          {% for currency in currencies %}
+            <option value="{{ currency.id }}" {% if expense and currency.id == expense.currency.id %}selected{% endif %}>{{ currency.code }} - {{ currency.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="expense_datetime">Date and Time</label>
+        <input type="datetime-local" id="expense_datetime" name="expense_datetime" value="{% if expense %}{{ expense.expense_datetime|date:'Y-m-d\TH:i' }}{% endif %}">
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="food" {% if expense and expense.category == 'food' %}selected{% endif %}>Food</option>
+          <option value="social_life" {% if expense and expense.category == 'social_life' %}selected{% endif %}>Social Life</option>
+          <option value="transport" {% if expense and expense.category == 'transport' %}selected{% endif %}>Transport</option>
+          <option value="household" {% if expense and expense.category == 'household' %}selected{% endif %}>Household</option>
+          <option value="health" {% if expense and expense.category == 'health' %}selected{% endif %}>Health</option>
+          <option value="education" {% if expense and expense.category == 'education' %}selected{% endif %}>Education</option>
+          <option value="apparel" {% if expense and expense.category == 'apparel' %}selected{% endif %}>Apparel</option>
+          <option value="gift" {% if expense and expense.category == 'gift' %}selected{% endif %}>Gift</option>
+          <option value="beauty" {% if expense and expense.category == 'beauty' %}selected{% endif %}>Beauty</option>
+          <option value="other" {% if expense and expense.category == 'other' %}selected{% endif %}>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="account">Account</label>
+        <select id="account" name="account" required>
+          <option value="cash" {% if expense and expense.account == 'cash' %}selected{% endif %}>Cash</option>
+          <option value="card" {% if expense and expense.account == 'card' %}selected{% endif %}>Card</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="note">Note</label>
+        <textarea id="note" name="note">{% if expense %}{{ expense.note }}{% endif %}</textarea>
+      </div>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+      <input type="submit" value="{% if expense %}Update Expense{% else %}Add Expense{% endif %}" class="btn btn-primary">
+    </form>
+
+    <div class="back-link">
+      <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    </div>
+  </div>
+{% endblock %}

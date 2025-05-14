@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Statistics - MySoqqa{% endblock %}
+
+{% block content %}
+<div class="stats-container">
+  <h1 class="page-title">Financial Statistics</h1>
+
+  <!-- Summary Cards -->
+  <div class="stats-cards">
+    <div class="stats-card income">
+      <h2>Total Income</h2>
+      <p class="amount">{{ total_income|floatformat:2 }} {{ currency }}</p>
+    </div>
+    <div class="stats-card expense">
+      <h2>Total Expenses</h2>
+      <p class="amount">{{ total_expense|floatformat:2 }} {{ currency }}</p>
+    </div>
+    <div class="stats-card balance">
+      <h2>Net Balance</h2>
+      <p class="amount">{{ net_balance|floatformat:2 }} {{ currency }}</p>
+    </div>
+  </div>
+
+  <!-- Progress Bar -->
+  <div class="progress-section">
+    <h2>Income vs. Expenses</h2>
+    <div class="progress-bar">
+      <div class="progress-income" style="width: {{ income_percentage }}%;"></div>
+      <div class="progress-expense" style="width: {{ expense_percentage }}%;"></div>
+    </div>
+    <p class="progress-label">
+      Income: {{ income_percentage|floatformat:1 }}% | Expenses: {{ expense_percentage|floatformat:1 }}%
+    </p>
+  </div>
+
+  <!-- Category Breakdown -->
+  <div class="category-section">
+    <h2>Category Breakdown</h2>
+    <table class="category-table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Type</th>
+          <th>Amount ({{ currency }})</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in category_breakdown %}
+        <tr class="{% if item.type == 'Income' %}income{% else %}expense{% endif %}">
+          <td>{{ item.category }}</td>
+          <td>{{ item.type }}</td>
+          <td>{{ item.amount|floatformat:2 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="3">No data available.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
